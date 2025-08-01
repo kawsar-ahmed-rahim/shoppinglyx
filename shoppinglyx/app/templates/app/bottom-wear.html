@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Bottom Wear{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="list-group">
+        <a href="{% url 'bottom_wear' %}" class="list-group-item list-grou-item-action" aria-current="true">All Bottom wears</a>
+        <a href="{% url 'bottom_weardata' 'Lee' %}" class="list-group-item list-grou-item-action" aria-current="true">Lee</a>
+        <a href="{% url 'bottom_weardata' 'avocado' %}" class="list-group-item list-grou-item-action" aria-current="true">avocado</a>
+        <a href="{% url 'bottom_weardata' 'BPT' %}" class="list-group-item list-grou-item-action" aria-current="true">BPT</a>
+        <a href="{% url 'bottom_weardata' 'STPT' %}" class="list-group-item list-grou-item-action" aria-current="true">STPT</a>
+         <a href="{% url 'bottom_weardata' 'below' %}" class="list-group-item list-grou-item-action" aria-current="true">Below 550</a>
+         <a href="{% url 'bottom_weardata' 'above' %}" class="list-group-item list-grou-item-action" aria-current="true">Above 550</a>
+    </div>
+  </div>
+  <div class="col-sm-8">
+   <div class="row">
+    {% for product in bottom_wears %}
+    <div class="col-sm-4 text-center mb-4">
+        <a href="{% url 'product-detail' product.id %}" class="btn">
+            <div class="item">
+                <img src="{{product.product_image.url}}" alt="img" height="200" width="250">
+                <div class="fw-bold">{{product.title}}</div>
+                <div class="fw-bold">Rs. {{product.discounted_price}} <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small></div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
